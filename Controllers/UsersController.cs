@@ -23,5 +23,26 @@ namespace ProductsValidation.Controllers
         {
             return View("Index", users);
         }
+
+        [HttpGet]
+        public IActionResult Create([FromQuery] User user)
+        {
+            return View(user);
+        }
+
+        [HttpPost("/Users/Create"), ValidateAntiForgeryToken]
+        public IActionResult Save([FromQuery] User user)
+        {
+            if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Email)
+                || string.IsNullOrWhiteSpace(user.Role))
+            {
+                ModelState.AddModelError("", "Set name, email and role in the query string.");
+                return View("Create", user);
+            }
+
+            user.Id = users.Max(item => item.Id) + 1;
+            users.Add(user);
+            return View("Details", user);
+        }
     }
 }

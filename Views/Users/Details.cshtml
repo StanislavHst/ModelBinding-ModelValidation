@@ -1,0 +1,9 @@
+@model User
+@{
+    ViewData["Title"] = "User details";
+}
+<h1>@Model.Name</h1>
+<p>Id: @Model.Id</p>
+<p>Email: @Model.Email</p>
+<p>Role: @Model.Role</p>
+<a asp-action="Index">Back to list</a>

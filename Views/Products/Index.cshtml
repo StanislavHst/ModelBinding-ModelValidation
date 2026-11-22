@@ -9,6 +9,13 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<p>
+    Edit prices:
+    @foreach (var type in Enum.GetValues<Product.Category>())
+    {
+        <a asp-action="EditPrices" asp-route-type="@type" class="mr-2">@type</a>
+    }
+</p>
 <table class="table">
     <thead>
         <tr>

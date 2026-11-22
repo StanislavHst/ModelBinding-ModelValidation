@@ -1,0 +1,17 @@
+@model User
+@{
+    ViewData["Title"] = "Create user";
+}
+<h1>Create user</h1>
+<p>Set the fields in the URL, for example <code>?name=Olena&amp;email=olena@example.com&amp;role=user</code>.</p>
+<form asp-action="Save" asp-route-name="@Model.Name" asp-route-email="@Model.Email" asp-route-role="@Model.Role" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control mb-2" readonly />
+    <label asp-for="Email"></label>
+    <input asp-for="Email" class="form-control mb-2" readonly />
+    <label asp-for="Role"></label>
+    <input asp-for="Role" class="form-control mb-2" readonly />
+    <button type="submit" class="btn btn-primary mb-2">Save</button>
+</form>
+<a asp-action="Index">Back to list</a>
